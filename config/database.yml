@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <% ENV['POSTGRES_USERNAME'] %>
+  password:
+
+development:
+  <<: *default
+  database: registry_development
+
+test:
+  <<: *default
+  database: registry_test
+
+production:
+  <<: *default
+  database: registry_production
