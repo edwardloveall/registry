@@ -1,3 +1,11 @@
 <% if current_user.admin? %>
   <%= link_to 'New product', new_registry_product_path %>
 <% end %>
+
+<section class="products">
+  <% @products.each do |product| %>
+    <div class="product">
+      <h3><%= product.name %></h3>
+    </div>
+  <% end %>
+</section>

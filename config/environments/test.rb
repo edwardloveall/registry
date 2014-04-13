@@ -36,4 +36,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Paperclip storage path
+  Paperclip::Attachment.default_options.merge!({
+    :path => "/tmp/paperclip/:class/:attachment/:id_partition/:style/:filename"
+  })
 end

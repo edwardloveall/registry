@@ -1,0 +1,8 @@
+<%= simple_form_for([:registry, @product], html: { multipart: true }) do |form| %>
+  <%= form.input :name %>
+  <%= form.input :link %>
+  <%= form.input :price %>
+  <%= form.input :image %>
+
+  <%= form.button :submit %>
+<% end %>
