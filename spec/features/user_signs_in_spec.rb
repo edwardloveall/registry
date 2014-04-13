@@ -3,14 +3,18 @@ require 'spec_helper'
 feature 'User signs in' do
   context 'with good credentials' do
     scenario 'sees registry path' do
-      user = create(:user)
-      visit root_path
-      click_link 'Sign in'
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password_digest
-      click_button 'Sign in'
+      sign_in_user
 
       expect(current_path).to eq(registry_root_path)
+      expect(page).to_not have_content('New product')
+    end
+
+    context 'as admin user' do
+      scenario 'sees admin links' do
+        sign_in_user(:admin)
+
+        expect(page).to have_content('New product')
+      end
     end
   end
 

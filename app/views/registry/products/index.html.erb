@@ -1,0 +1,3 @@
+<% if current_user.admin? %>
+  <%= link_to 'New product', new_registry_product_path %>
+<% end %>
