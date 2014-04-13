@@ -18,9 +18,28 @@ class Registry::ProductsController < RegistryController
     end
   end
 
+  def edit
+    @product = find_product
+  end
+
+  def update
+    @product = find_product
+
+    if @product.update(product_params)
+      flash[:success] = 'Product updated'
+      redirect_to registry_products_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def product_params
     params.require(:product).permit(:name, :link, :price, :image)
+  end
+
+  def find_product
+    Product.find(params[:id])
   end
 end

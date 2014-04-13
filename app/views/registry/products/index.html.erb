@@ -6,6 +6,7 @@
   <% @products.each do |product| %>
     <div class="product">
       <h3><%= product.name %></h3>
+      <%= link_to 'Edit', edit_registry_product_path(product) if current_user.admin? %>
     </div>
   <% end %>
 </section>
