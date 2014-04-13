@@ -6,7 +6,10 @@
   <% @products.each do |product| %>
     <div class="product">
       <h3><%= product.name %></h3>
-      <%= link_to 'Edit', edit_registry_product_path(product) if current_user.admin? %>
+      <% if current_user.admin? %>
+        <%= link_to 'Edit', edit_registry_product_path(product) %>
+        <%= link_to 'Remove', registry_product_path(product), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <% end %>
     </div>
   <% end %>
 </section>

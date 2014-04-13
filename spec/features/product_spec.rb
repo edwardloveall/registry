@@ -4,6 +4,8 @@ feature 'Product management' do
   before(:each) do
     @product = attributes_for(:product)
     sign_in_user(:admin)
+    create(:product)
+    visit registry_products_path
   end
 
   scenario 'Admin adds a product' do
@@ -28,9 +30,6 @@ feature 'Product management' do
   end
 
   scenario 'Admin updates a product' do
-    product = create(:product)
-
-    visit registry_products_path
     click_link 'Edit'
     fill_in 'Name', with: 'foo'
     click_button 'Update Product'
@@ -39,5 +38,10 @@ feature 'Product management' do
     expect(page).to have_content('foo')
   end
 
-
+  scenario 'Admin deletes a product' do
+    expect {
+      click_link 'Remove'
+    }.to change(Product, :count).by(-1)
+    expect(current_path).to eq(registry_products_path)
+  end
 end

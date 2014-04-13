@@ -33,6 +33,13 @@ class Registry::ProductsController < RegistryController
     end
   end
 
+  def destroy
+    @product = find_product
+    @product.destroy
+    flash[:success] = 'Product removed'
+    redirect_to registry_products_path
+  end
+
   private
 
   def product_params
