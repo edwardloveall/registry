@@ -55,6 +55,12 @@ feature 'Product management' do
       sign_in_user
     end
 
+    scenario 'User tries to create a product' do
+      visit new_registry_product_path(Product.first)
+
+      expect(current_path).to eq(registry_root_path)
+    end
+
     scenario 'User tries to edit a product' do
       visit edit_registry_product_path(Product.first)
 
