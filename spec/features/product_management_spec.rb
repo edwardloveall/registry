@@ -66,5 +66,12 @@ feature 'Product management' do
 
       expect(current_path).to eq(registry_root_path)
     end
+
+    scenario 'User can not see product management controls' do
+      visit registry_root_path
+
+      expect(page).to_not have_content('Edit')
+      expect(page).to_not have_content('Delete')
+    end
   end
 end
